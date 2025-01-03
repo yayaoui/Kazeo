@@ -10,11 +10,12 @@
   width: 100%;
   z-index: 1000;
   margin-top: auto;
+  font-size: 0.875rem;
 }
 
 :host {
   display: block;
-  margin-bottom: calc(100vh - 80vh); // Adjust this value based on your footer height
+  margin-bottom: calc(60vh - 80vh); // Adjust this value based on your footer height
 }
 
 // Footer Logo
@@ -73,6 +74,6 @@ i.fas, i.fab {
   
   // Adjust margin for smaller screens
   :host {
-    margin-bottom: calc(100vh - 70vh); // Slightly larger margin for mobile
+    margin-bottom: calc(50vh - 70vh); // Slightly larger margin for mobile
   }
 }

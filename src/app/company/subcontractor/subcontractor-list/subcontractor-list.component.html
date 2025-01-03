@@ -2,7 +2,7 @@
     <div class="card">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Liste des Sous-traitants</h5>
-        <button class="btn btn-light" alt="Ajouter un Sous-traitant" (click)="addSubcontractor()"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-light" alt="Ajouter un Sous-traitant" (click)="showAddModal()"><i class="fas fa-plus"></i></button>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive">
@@ -10,11 +10,11 @@
             <thead class="bg-light">
               <tr>
                 <th class="py-3">ID</th>
-                <th class="py-3">Nom</th>
-                <th class="py-3 d-none d-md-table-cell">Email</th>
-                <th class="py-3 d-none d-md-table-cell">Téléphone</th>
-                <th class="py-3 d-none d-lg-table-cell">Adresse</th>
-                <th class="py-3">Spécialité</th>
+                <th class="py-3">Responsable</th>
+                <th class="py-3">Company</th>
+                <th class="py-3">Expertise</th>
+                <th class="py-3">Location</th>
+                <th class="py-3">Phone</th>
                 <th class="py-3">Statut</th>
                 <th class="py-3 text-end">Actions</th>
               </tr>
@@ -26,31 +26,39 @@
                   {{contractor.id}}
                 </td>
                 <td class="align-middle" data-label="Nom">
-                  <span class="d-inline d-md-none fw-bold me-2">Nom:</span>
-                  {{contractor.name}}
+                  <span class="d-inline d-md-none fw-bold me-2">Responsable:</span>
+                  {{contractor.responsible}}
                 </td>
-                <td class="align-middle d-none d-md-table-cell" data-label="Email">
-                  {{contractor.email}}
+                <td class="align-middle" data-label="Company">
+                  <span class="d-inline d-md-none fw-bold me-2">Company:</span>
+                  {{contractor.company}}
                 </td>
-                <td class="align-middle d-none d-md-table-cell" data-label="Téléphone">
+                <td class="align-middle" data-label="Expertise">
+                  <span class="d-inline d-md-none fw-bold me-2">Expertise:</span>
+                  {{contractor.expertise}}
+                </td>
+                <td class="align-middle" data-label="Location">
+                  <span class="d-inline d-md-none fw-bold me-2">Location:</span>
+                  {{contractor.location}}
+                </td>
+                <td class="align-middle" data-label="Phone">
+                  <span class="d-inline d-md-none fw-bold me-2">Phone:</span>
                   {{contractor.phone}}
-                </td>
-                <td class="align-middle d-none d-lg-table-cell" data-label="Adresse">
-                  {{contractor.address}}
-                </td>
-                <td class="align-middle" data-label="Spécialité">
-                  <span class="d-inline d-md-none fw-bold me-2">Spécialité:</span>
-                  {{contractor.speciality}}
                 </td>
                 <td class="align-middle" data-label="Statut">
                   <span class="d-inline d-md-none fw-bold me-2">Statut:</span>
-                  <span class="badge rounded-pill" [ngClass]="{'bg-success': contractor.status === 'active', 'bg-danger': contractor.status === 'inactive'}">
-                    {{contractor.status === 'active' ? 'Actif' : 'Inactif'}}
-                  </span>
+                  <span class="badge bg-success" *ngIf="contractor.status === 'Active'">Active</span>
+                  <span class="badge bg-danger" *ngIf="contractor.status === 'Inactive'">Inactive</span>
                 </td>
                 <td class="align-middle text-end" data-label="Actions">
                   <div class="btn-group">
-                    <button class="btn btn-sm btn-outline-info me-1" title="Voir détails" (click)="openDetailsModal(contractor)">
+                    <!-- Ouvre la modale pour afficher les détails du sous-traitant -->
+                    <!--
+                      Bouton pour ouvrir la modale et afficher les détails du sous-traitant
+                      Utilise la fonction openModal(contractor) pour passer le sous-traitant sélectionné
+                      en tant que paramètre
+                    -->
+                    <button class="btn btn-sm btn-outline-info me-1" title="Voir détails" (click)="openModal(contractor)">
                       <i class="fas fa-eye"></i>
                     </button>
                     <button class="btn btn-sm btn-outline-primary me-1" title="Éditer">
@@ -83,10 +91,11 @@
             <div class="card h-100">
               <div class="card-body">
                 <h6 class="card-subtitle mb-3 text-primary">Informations Personnelles</h6>
-                <p class="mb-2"><strong>Nom:</strong> {{selectedContractor.name}}</p>
+                <p class="mb-2"><strong>Responsable:</strong> {{selectedContractor.responsible}}</p>
+                <p class="mb-2"><strong>Company:</strong> {{selectedContractor.company}}</p>
                 <p class="mb-2"><strong>Email:</strong> {{selectedContractor.email}}</p>
                 <p class="mb-2"><strong>Téléphone:</strong> {{selectedContractor.phone}}</p>
-                <p class="mb-0"><strong>Adresse:</strong> {{selectedContractor.address}}</p>
+                <p class="mb-0"><strong>Adresse:</strong> {{selectedContractor.location}}</p>
               </div>
             </div>
           </div>
@@ -94,7 +103,7 @@
             <div class="card h-100">
               <div class="card-body">
                 <h6 class="card-subtitle mb-3 text-primary">Informations Professionnelles</h6>
-                <p class="mb-2"><strong>Spécialité:</strong> {{selectedContractor.speciality}}</p>
+                <p class="mb-2"><strong>Spécialité:</strong> {{selectedContractor.expertise}}</p>
                 <p class="mb-2"><strong>Statut:</strong> 
                   <span class="badge rounded-pill" [ngClass]="{'bg-success': selectedContractor.status === 'active', 'bg-danger': selectedContractor.status === 'inactive'}">
                     {{selectedContractor.status === 'active' ? 'Actif' : 'Inactif'}}
