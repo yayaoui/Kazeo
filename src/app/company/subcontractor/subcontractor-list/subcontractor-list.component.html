@@ -1,0 +1,114 @@
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Liste des Sous-traitants</h5>
+        <button class="btn btn-light" alt="Ajouter un Sous-traitant" (click)="addSubcontractor()"><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped mb-0 responsive-table">
+            <thead class="bg-light">
+              <tr>
+                <th class="py-3">ID</th>
+                <th class="py-3">Nom</th>
+                <th class="py-3 d-none d-md-table-cell">Email</th>
+                <th class="py-3 d-none d-md-table-cell">Téléphone</th>
+                <th class="py-3 d-none d-lg-table-cell">Adresse</th>
+                <th class="py-3">Spécialité</th>
+                <th class="py-3">Statut</th>
+                <th class="py-3 text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contractor of subcontractors" class="contractor-row">
+                <td class="align-middle" data-label="ID">
+                  <span class="d-inline d-md-none fw-bold me-2">ID:</span>
+                  {{contractor.id}}
+                </td>
+                <td class="align-middle" data-label="Nom">
+                  <span class="d-inline d-md-none fw-bold me-2">Nom:</span>
+                  {{contractor.name}}
+                </td>
+                <td class="align-middle d-none d-md-table-cell" data-label="Email">
+                  {{contractor.email}}
+                </td>
+                <td class="align-middle d-none d-md-table-cell" data-label="Téléphone">
+                  {{contractor.phone}}
+                </td>
+                <td class="align-middle d-none d-lg-table-cell" data-label="Adresse">
+                  {{contractor.address}}
+                </td>
+                <td class="align-middle" data-label="Spécialité">
+                  <span class="d-inline d-md-none fw-bold me-2">Spécialité:</span>
+                  {{contractor.speciality}}
+                </td>
+                <td class="align-middle" data-label="Statut">
+                  <span class="d-inline d-md-none fw-bold me-2">Statut:</span>
+                  <span class="badge rounded-pill" [ngClass]="{'bg-success': contractor.status === 'active', 'bg-danger': contractor.status === 'inactive'}">
+                    {{contractor.status === 'active' ? 'Actif' : 'Inactif'}}
+                  </span>
+                </td>
+                <td class="align-middle text-end" data-label="Actions">
+                  <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-info me-1" title="Voir détails" (click)="openDetailsModal(contractor)">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary me-1" title="Éditer">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal des détails -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="detailsModalLabel">Détails du Sous-traitant</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" *ngIf="selectedContractor">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-3 text-primary">Informations Personnelles</h6>
+                <p class="mb-2"><strong>Nom:</strong> {{selectedContractor.name}}</p>
+                <p class="mb-2"><strong>Email:</strong> {{selectedContractor.email}}</p>
+                <p class="mb-2"><strong>Téléphone:</strong> {{selectedContractor.phone}}</p>
+                <p class="mb-0"><strong>Adresse:</strong> {{selectedContractor.address}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-3 text-primary">Informations Professionnelles</h6>
+                <p class="mb-2"><strong>Spécialité:</strong> {{selectedContractor.speciality}}</p>
+                <p class="mb-2"><strong>Statut:</strong> 
+                  <span class="badge rounded-pill" [ngClass]="{'bg-success': selectedContractor.status === 'active', 'bg-danger': selectedContractor.status === 'inactive'}">
+                    {{selectedContractor.status === 'active' ? 'Actif' : 'Inactif'}}
+                  </span>
+                </p>
+                <p class="mb-2"><strong>ID:</strong> {{selectedContractor.id}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
