@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SubcontractorService } from '../../../services/subcontractor.service';
 import { Subcontractor } from '../../../models/subcontractor.model';
+import { HttpErrorResponse } from '@angular/common/http';
 declare var bootstrap: any;
 
 @Component({
@@ -11,106 +13,121 @@ declare var bootstrap: any;
 export class SubcontractorListComponent implements OnInit {
   subcontractors: Subcontractor[] = [];
   selectedContractor: Subcontractor | null = null;
-  private modal: any;
+  private detailsModal: any;
   loading = false;
   error = '';
+  page = 0;
+  size = 7;
+  pages: any = [];
+  totalPages = 0;
 
-  constructor(private subcontractorService: SubcontractorService) {}
+  constructor(
+    private subcontractorService: SubcontractorService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadSubcontractors();
-    // Initialize Bootstrap modal
-    const modalElement = document.getElementById('subcontractorModal');
-    if (modalElement) {
-      this.modal = new bootstrap.Modal(modalElement);
-    }
-  }
-
-  // Load all subcontractors
-  loadSubcontractors(): void {
-    this.loading = true;
-    this.subcontractorService.getAllSubcontractors()
-      .subscribe({
-        next: (data) => {
-          this.subcontractors = data;
-          this.loading = false;
-        },
-        error: (error) => {
-          this.error = 'Error loading subcontractors';
-          this.loading = false;
-          console.error('Error:', error);
-        }
-      });
-  }
-
-  // Open modal with subcontractor details
-  openModal(contractor: Subcontractor): void {
-    this.selectedContractor = contractor;
-    this.modal?.show();
-  }
-
-  // Close modal
-  closeModal(): void {
-    this.selectedContractor = null;
-    this.modal?.hide();
-  }
-
-  // Show modal to add new subcontractor
-  showAddModal(): void {
-    this.selectedContractor = null; // Reset selected contractor
     const modalElement = document.getElementById('detailsModal');
     if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
+      this.detailsModal = new bootstrap.Modal(modalElement);
     }
   }
 
-  // Add new subcontractor
-  addSubcontractor(subcontractor: Omit<Subcontractor, 'id'>): void {
-    this.subcontractorService.createSubcontractor(subcontractor)
+  loadSubcontractors(): void {
+    this.loading = true;
+    this.subcontractorService.getSubcontractors(this.page, this.size)
       .subscribe({
-        next: (newSubcontractor) => {
-          this.subcontractors.push(newSubcontractor);
-          this.closeModal();
+        next: (response) => {
+          this.subcontractors = response.content;
+          this.totalPages = response.totalPages;
+          this.pages = Array(this.totalPages).fill(0).map((x, i) => i);
+          this.loading = false;
         },
-        error: (error) => {
-          this.error = 'Error adding subcontractor';
-          console.error('Error:', error);
+        error: (error: HttpErrorResponse) => {
+          this.error = 'Une erreur est survenue lors du chargement des sous-traitants.';
+          this.loading = false;
         }
       });
   }
 
-  // Update subcontractor
-  updateSubcontractor(id: number, updates: Partial<Subcontractor>): void {
-    this.subcontractorService.updateSubcontractor(id, updates)
-      .subscribe({
-        next: (updatedSubcontractor) => {
-          const index = this.subcontractors.findIndex(s => s.id === id);
-          if (index !== -1) {
-            this.subcontractors[index] = updatedSubcontractor;
-          }
-          this.closeModal();
-        },
-        error: (error) => {
-          this.error = 'Error updating subcontractor';
-          console.error('Error:', error);
-        }
-      });
+  gotToPage(page: number) {
+    this.page = page;
+    this.loadSubcontractors();
   }
 
-  // Delete subcontractor
+  goToFirstPage() {
+    this.page = 0;
+    this.loadSubcontractors();
+  }
+
+  goToPreviousPage() {
+    this.page--;
+    this.loadSubcontractors();
+  }
+
+  goToNextPage() {
+    this.page++;
+    this.loadSubcontractors();
+  }
+
+  goToLastPage() {
+    this.page = this.totalPages - 1;
+    this.loadSubcontractors();
+  }
+
+  get isLastPage() {
+    return this.page === this.totalPages - 1;
+  }
+
+  navigateToCreate(): void {
+    this.router.navigate(['/sous-traitant/create']);
+  }
+
+  showDetails(contractor: Subcontractor): void {
+    this.selectedContractor = contractor;
+    if (this.detailsModal) {
+      this.detailsModal.show();
+    }
+  }
+
   deleteSubcontractor(id: number): void {
-    if (confirm('Are you sure you want to delete this subcontractor?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce sous-traitant ?')) {
       this.subcontractorService.deleteSubcontractor(id)
         .subscribe({
           next: () => {
-            this.subcontractors = this.subcontractors.filter(s => s.id !== id);
+            this.loadSubcontractors();
           },
-          error: (error) => {
-            this.error = 'Error deleting subcontractor';
-            console.error('Error:', error);
+          error: (error: HttpErrorResponse) => {
+            this.error = 'Une erreur est survenue lors de la suppression du sous-traitant.';
           }
         });
     }
+  }
+
+  openDetailsModal(contractor: Subcontractor): void {
+    this.selectedContractor = contractor;
+    this.detailsModal?.show();
+  }
+
+  closeDetailsModal(): void {
+    this.detailsModal?.hide();
+    this.selectedContractor = null;
+  }
+
+  archiveContractor(id: number): void {
+    this.subcontractorService.archiveSubcontractor(id)
+      .subscribe({
+        next: () => {
+          this.loadSubcontractors();
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Error archiving subcontractor:', error);
+        }
+      });
+  }
+
+  navigateToEdit(id: number): void {
+    this.router.navigate(['/sous-traitant/edit', id]);
   }
 }

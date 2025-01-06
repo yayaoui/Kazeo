@@ -9,5 +9,6 @@ export interface Subcontractor {
   rating: number;
   location: string;
   Description: string;
-  skills: string[]; 
+  skills: string[];
+  archived?: boolean;
 }

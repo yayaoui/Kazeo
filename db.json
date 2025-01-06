@@ -1,8 +1,8 @@
 {
   "subcontractors": [
     {
-      "id": 1,
-      "responsible" : "Jean Martin",
+      "id": "1",
+      "responsible": "Jean Martin",
       "company": "Tech Solutions SARL",
       "expertise": "Isolation",
       "email": "jean.martin@techsolutions.fr",
@@ -11,11 +11,16 @@
       "rating": 4.5,
       "location": "Paris",
       "Description": "Specialiste en isolation Termique de mur par l'exterieur et par l'interieur et xhngment des cambles",
-      "skills": ["Isolation thermique", "Isolation par l'interieur", "Isolation par l'exterieur"]
+      "skills": [
+        "Isolation thermique",
+        "Isolation par l'interieur",
+        "Isolation par l'exterieur"
+      ],
+      "archived": false
     },
     {
-      "id": 2,
-      "responsible" : "Marie Dubois",
+      "id": "2",
+      "responsible": "Marie Dubois",
       "company": "Digital Services Pro",
       "expertise": "Ventilation",
       "email": "marie.dubois@digitalservices.fr",
@@ -24,12 +29,299 @@
       "rating": 4.8,
       "location": "Lyon",
       "Description": "Specialiste en ventilation et chauffage",
-      "skills": ["Ventilation", "Chauffage", "Isolation thermique"]
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "3",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "4",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "5",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "6",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "7",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "8",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "9",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "10",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "11",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "12",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "13",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "14",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "15",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "16",
+      "responsible": "Marie Dubois",
+      "company": "Digital Services Pro",
+      "expertise": "Ventilation",
+      "email": "marie.dubois@digitalservices.fr",
+      "phone": "+33 6 12 34 56 78",
+      "status": "En mission",
+      "rating": 4.8,
+      "location": "Lyon",
+      "Description": "Specialiste en ventilation et chauffage",
+      "skills": [
+        "Ventilation",
+        "Chauffage",
+        "Isolation thermique"
+      ],
+      "archived": false
+    },
+    {
+      "id": "9aaa",
+      "responsible": "respo 1",
+      "company": "entreprise 1",
+      "expertise": "ITE",
+      "location": "Marrakech",
+      "phone": "0632124578",
+      "email": "respo1@gmail.com",
+      "status": "active"
+    },
+    {
+      "id": "a8c8",
+      "responsible": "respo 2",
+      "company": "entreprise 2",
+      "expertise": "Cambel",
+      "location": "Marrakech",
+      "phone": "0632124578",
+      "email": "respo2@gmail.com",
+      "status": "active"
+    },
+    {
+      "id": "c880",
+      "responsible": "respo 3",
+      "company": "entreprise 3",
+      "expertise": "ITE3",
+      "location": "Marrakech3",
+      "phone": "0603043718",
+      "email": "elizayeu@sfr.fr",
+      "status": "inactive"
     }
   ],
   "clients": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Entreprise ABC",
       "industry": "Finance",
       "contact": "Sophie Bernard",
@@ -39,7 +331,7 @@
       "activeProjects": 2
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Tech Innovate",
       "industry": "Technology",
       "contact": "Pierre Durand",
@@ -51,7 +343,7 @@
   ],
   "projects": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Refonte Site E-commerce",
       "clientId": 1,
       "subcontractorId": 1,
@@ -63,7 +355,7 @@
       "priority": "Haute"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Application Mobile",
       "clientId": 2,
       "subcontractorId": 2,

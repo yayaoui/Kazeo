@@ -18,8 +18,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sous-traitant" routerLinkActive="active">Sous-traitant</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sous-traitant
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/sous-traitant" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Liste des Sous-traitants</a></li>
+            <li><a class="dropdown-item" routerLink="/sous-traitant/create" routerLinkActive="active">Ajouter un Sous-traitant</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/clients" routerLinkActive="active">Clients</a>
