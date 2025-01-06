@@ -14,41 +14,31 @@
     <!-- Navbar Content -->
     <div class="collapse navbar-collapse" id="navbarContent">
       <!-- Main Navigation -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Sous-traitant
+          <a class="nav-link d-flex align-items-center" routerLink="/accueil" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fas fa-home me-2"></i>Accueil
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/sous-traitant" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Liste des Sous-traitants</a></li>
-            <li><a class="dropdown-item" routerLink="/sous-traitant/create" routerLinkActive="active">Ajouter un Sous-traitant</a></li>
-          </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/clients" routerLinkActive="active">Clients</a>
+          <a class="nav-link d-flex align-items-center" routerLink="/sous-traitant" routerLinkActive="active">
+            <i class="fas fa-hard-hat me-2"></i>Sous-traitant
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/projets" routerLinkActive="active">Projets</a>
+          <a class="nav-link d-flex align-items-center" routerLink="/clients" routerLinkActive="active">
+            <i class="fas fa-users me-2"></i>Clients
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/projets" routerLinkActive="active">
+            <i class="fas fa-project-diagram me-2"></i>Projets
+          </a>
         </li>
       </ul>
 
       <!-- Right Side Items -->
       <div class="d-flex align-items-center gap-3">
-        <!-- Search -->
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
-          <button class="btn btn-outline-primary" type="submit">Rechercher</button>
-        </form>
-
-        <!-- Theme Toggle Button -->
-        <button class="btn btn-icon" id="themeToggle" (click)="toggleTheme()" [attr.aria-label]="(currentTheme$ | async) === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'">
-          <i class="fas fa-moon theme-icon-dark d-none"></i>
-          <i class="fas fa-sun theme-icon-light"></i>
-        </button>
-
         <!-- User Menu -->
         <div class="dropdown">
           <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,6 +51,11 @@
             <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</a></li>
           </ul>
         </div>
+        <!-- Theme Toggle Button -->
+        <button class="btn btn-icon" id="themeToggle" (click)="toggleTheme()" [attr.aria-label]="(currentTheme$ | async) === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'">
+          <i class="fas fa-moon theme-icon-dark d-none"></i>
+          <i class="fas fa-sun theme-icon-light"></i>
+        </button>
       </div>
     </div>
   </div>

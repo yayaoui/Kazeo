@@ -6,6 +6,7 @@ import { SubcontractorFormComponent } from './subcontractor/subcontractor-form/s
 import { ClientListComponent } from './clients/client-list/client-list.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { SubcontractorProfileComponent } from './subcontractor/subcontractor-profile/subcontractor-profile.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'sous-traitant', component: SubcontractorListComponent },
       { path: 'sous-traitant/create', component: SubcontractorFormComponent },
       { path: 'sous-traitant/edit/:id', component: SubcontractorFormComponent },
+      { path: 'sous-traitant/profile/:id', component: SubcontractorProfileComponent },
       { path: 'clients', component: ClientListComponent },
       { path: 'projets', component: ProjectListComponent }
     ]

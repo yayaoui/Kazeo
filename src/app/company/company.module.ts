@@ -11,6 +11,7 @@ import { ClientListComponent } from './clients/client-list/client-list.component
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SubcontractorProfileComponent } from './subcontractor/subcontractor-profile/subcontractor-profile.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     SubcontractorListComponent,
     SubcontractorFormComponent,
+    SubcontractorProfileComponent,
     ClientListComponent,
     ProjectListComponent,
     ScheduleComponent

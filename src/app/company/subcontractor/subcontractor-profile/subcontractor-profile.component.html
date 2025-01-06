@@ -1,0 +1,166 @@
+<div class="container mt-4" *ngIf="subcontractor">
+  <div class="row">
+    <!-- Profile Header -->
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h2 class="mb-1">{{subcontractor!.company}}</h2>
+              <p class="text-muted mb-0">{{subcontractor!.expertise}}</p>
+            </div>
+            <span class="badge" [ngClass]="{'bg-success': subcontractor!.status === 'active', 'bg-danger': subcontractor!.status === 'inactive'}">
+              {{subcontractor!.status === 'active' ? 'Actif' : 'Inactif'}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="col-12 mb-4">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab === 'info'" (click)="setActiveTab('info')" href="javascript:void(0)">
+            <i class="fas fa-info-circle me-2"></i>Informations
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab === 'files'" (click)="setActiveTab('files')" href="javascript:void(0)">
+            <i class="fas fa-file me-2"></i>Fichiers
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab === 'contracts'" (click)="setActiveTab('contracts')" href="javascript:void(0)">
+            <i class="fas fa-file-contract me-2"></i>Contrats
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Content Area -->
+    <div class="col-12">
+      <!-- Information Tab -->
+      <div *ngIf="activeTab === 'info'" class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <h4 class="mb-4">Informations Générales</h4>
+              <div class="mb-3">
+                <label class="text-muted">Entreprise</label>
+                <p class="mb-2">{{subcontractor.company}}</p>
+              </div>
+              <div class="mb-3">
+                <label class="text-muted">Expertise</label>
+                <p class="mb-2">{{subcontractor.expertise}}</p>
+              </div>
+              <div class="mb-3">
+                <label class="text-muted">Description</label>
+                <p class="mb-2">{{subcontractor.Description}}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h4 class="mb-4">Contact</h4>
+              <div class="mb-3">
+                <label class="text-muted">Email</label>
+                <p class="mb-2">{{subcontractor.email}}</p>
+              </div>
+              <div class="mb-3">
+                <label class="text-muted">Téléphone</label>
+                <p class="mb-2">{{subcontractor.phone}}</p>
+              </div>
+              <div class="mb-3">
+                <label class="text-muted">Localisation</label>
+                <p class="mb-2">{{subcontractor.location}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-12">
+              <h4 class="mb-3">Compétences</h4>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-primary" *ngFor="let skill of subcontractor.skills">{{skill}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Files Tab -->
+      <div *ngIf="activeTab === 'files'" class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">Documents</h4>
+            <button class="btn btn-primary" (click)="uploadFile()">
+              <i class="fas fa-upload me-2"></i>Ajouter un document
+            </button>
+          </div>
+          <!-- File List -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nom du fichier</th>
+                  <th>Type</th>
+                  <th>Date d'ajout</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Add file list here -->
+                <tr>
+                  <td colspan="4" class="text-center py-4">Aucun document disponible</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contracts Tab -->
+      <div *ngIf="activeTab === 'contracts'" class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0">Contrats</h4>
+            <button class="btn btn-primary" (click)="addContract()">
+              <i class="fas fa-plus me-2"></i>Nouveau contrat
+            </button>
+          </div>
+          <!-- Contract List -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Référence</th>
+                  <th>Type</th>
+                  <th>Date de début</th>
+                  <th>Date de fin</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Add contract list here -->
+                <tr>
+                  <td colspan="6" class="text-center py-4">Aucun contrat disponible</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Spinner -->
+<div class="d-flex justify-content-center my-5" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Chargement...</span>
+  </div>
+</div>
+
+<!-- Error Message -->
+<div class="alert alert-danger mt-4" *ngIf="error">
+  {{error}}
+</div>

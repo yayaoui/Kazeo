@@ -1,14 +1,13 @@
 export interface Subcontractor {
   id: number;
-  responsible: string;
   company: string;
   expertise: string;
+  Description: string;
   email: string;
   phone: string;
-  status: string;
-  rating: number;
   location: string;
-  Description: string;
+  status: 'active' | 'inactive';
+  rating: number;
   skills: string[];
   archived?: boolean;
 }
