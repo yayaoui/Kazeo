@@ -1,46 +1,43 @@
-<div class="container mt-4" *ngIf="subcontractor">
+<div class="container-fluid profile-container mt-4" *ngIf="subcontractor">
   <div class="row">
     <!-- Profile Header -->
-    <div class="col-12 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <div class="d-flex gap-4">
-              <!-- Profile Picture Section -->
-              <div class="position-relative">
-                <img [src]="subcontractor.profilePicture || 'assets/images/default-company.png'"
-                     class="rounded-circle"
-                     style="width: 100px; height: 100px; object-fit: cover;"
-                     alt="Profile picture">
-                <button *ngIf="isEditing" class="btn btn-sm btn-primary position-absolute bottom-0 end-0"
-                        (click)="fileInput.click()">
-                  <i class="fas fa-camera"></i>
-                </button>
-                <input #fileInput type="file" class="d-none" accept="image/*" (change)="onFileSelected($event)">
-              </div>
-              <!-- Company Info -->
-              <div>
-                <div class="d-flex align-items-center gap-2">
-                  <h2 class="mb-1" *ngIf="!isEditing">{{subcontractor.company}}</h2>
-                  <span class="badge" [ngClass]="{'bg-success': subcontractor.status === 'active', 'bg-danger': subcontractor.status === 'inactive'}">
-                    {{subcontractor.status === 'active' ? 'Actif' : 'Inactif'}}
-                  </span>
-                  <input *ngIf="isEditing && editedSubcontractor" type="text" class="form-control" [(ngModel)]="editedSubcontractor.company">
-                  <button class="btn btn-primary ms-2" (click)="toggleEdit()">
-                    <i class="fas" [ngClass]="isEditing ? 'fa-save' : 'fa-edit'"></i>
-                    {{isEditing ? 'Enregistrer' : 'Modifier'}}
-                  </button>
-                </div>
-                <p class="text-muted mb-0" *ngIf="!isEditing">{{subcontractor.workSector}}</p>
-                <input *ngIf="isEditing && editedSubcontractor" type="text" class="form-control mt-2" [(ngModel)]="editedSubcontractor.workSector">
-              </div>
-            </div>
-            <div class="d-flex align-items-center">
-              <!-- Archive Button -->
-              <button class="btn btn-danger ms-2"  title="Archiver">
-                <i class="fas fa-archive me-2"></i>Archiver
+    <div class="col-12 mb-4 profile-header">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex gap-4">
+            <!-- Profile Picture Section -->
+            <div class="position-relative">
+              <img [src]="subcontractor.profilePicture || 'assets/images/default-company.png'"
+                   class="rounded-circle profile-picture"
+                   alt="Profile picture">
+              <button *ngIf="isEditing" class="btn btn-sm btn--primary position-absolute bottom-0 end-0 edit-button"
+                      (click)="fileInput.click()">
+                <i class="fas fa-camera"></i>
               </button>
+              <input #fileInput type="file" class="d-none" accept="image/*" (change)="onFileSelected($event)">
             </div>
+            <!-- Company Info -->
+            <div class="company-info">
+              <div class="d-flex align-items-center gap-2">
+                <h2 class="mb-1" *ngIf="!isEditing">{{subcontractor.company}}</h2>
+                <span class="badge status-badge" [ngClass]="{'active': subcontractor.status === 'active', 'inactive': subcontractor.status === 'inactive'}">
+                  {{subcontractor.status === 'active' ? 'Actif' : 'Inactif'}}
+                </span>
+                <input *ngIf="isEditing && editedSubcontractor" type="text" class="form-control" [(ngModel)]="editedSubcontractor.company">
+                <button class="btn edit-button" (click)="toggleEdit()">
+                  <i class="fas" [ngClass]="isEditing ? 'fa-save' : 'fa-edit'"></i>
+                  {{isEditing ? 'Enregistrer' : 'Modifier'}}
+                </button>
+              </div>
+              <p class="text-muted mb-0" *ngIf="!isEditing">{{subcontractor.workSector}}</p>
+              <input *ngIf="isEditing && editedSubcontractor" type="text" class="form-control mt-2" [(ngModel)]="editedSubcontractor.workSector">
+            </div>
+          </div>
+          <div class="d-flex align-items-center">
+            <!-- Archive Button -->
+            <button class="btn archive-button ms-2"  title="Archiver">
+              <i class="fas fa-archive me-2"></i>Archiver
+            </button>
           </div>
         </div>
       </div>
@@ -70,10 +67,10 @@
     <!-- Content Area -->
     <div class="col-12">
       <!-- Information Tab -->
-      <div *ngIf="activeTab === 'info'" class="card">
+      <div *ngIf="activeTab === 'info'" class="card content-card">
         <div class="card-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <h4 class="mb-4">Informations Générales</h4>
               <div class="mb-3">
                 <label class="text-muted">Description</label>
@@ -83,13 +80,13 @@
               <div class="mb-3">
                 <label class="text-muted">Compétences</label>
                 <div *ngIf="!isEditing">
-                  <span *ngFor="let skill of subcontractor.skills" class="badge bg-secondary me-2 mb-2">{{skill}}</span>
+                  <span *ngFor="let skill of subcontractor.skills" class="badge skill-badge me-2 mb-2">{{skill}}</span>
                 </div>
                 <div *ngIf="isEditing && editedSubcontractor">
                   <input type="text" class="form-control mb-2" [(ngModel)]="newSkill" 
                          placeholder="Ajouter une compétence" (keyup.enter)="addSkill()">
                   <div>
-                    <span *ngFor="let skill of editedSubcontractor.skills" class="badge bg-secondary me-2 mb-2">
+                    <span *ngFor="let skill of editedSubcontractor.skills" class="badge skill-badge me-2 mb-2">
                       {{skill}}
                       <i class="fas fa-times ms-1 cursor-pointer" (click)="removeSkill(skill)"></i>
                     </span>
@@ -97,7 +94,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <h4 class="mb-4">Contact</h4>
               <div class="mb-3">
                 <label class="text-muted">Email</label>
@@ -122,12 +119,68 @@
                 </div>
               </div>
             </div>
+            <!-- Responsable Section -->
+            <div class="col-md-4">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="card-title mb-4">Responsable</h4>
+                  
+                  <!-- Display Mode -->
+                  <div *ngIf="!isEditing">
+                    <div class="mb-3">
+                      <label class="text-muted">Nom</label>
+                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.name}}</p>
+                    </div>
+                    <div class="mb-3">
+                      <label class="text-muted">Email</label>
+                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.email}}</p>
+                    </div>
+                    <div class="mb-3">
+                      <label class="text-muted">Téléphone Principal</label>
+                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.phone1}}</p>
+                    </div>
+                    <div class="mb-3">
+                      <label class="text-muted">Téléphone Secondaire</label>
+                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.phone2}}</p>
+                    </div>
+                    <div class="mb-3">
+                      <label class="text-muted">Rôle</label>
+                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.role}}</p>
+                    </div>
+                  </div>
+
+                  <!-- Edit Mode -->
+                  <div *ngIf="isEditing && editedSubcontractor?.responsibleOfSubcontractors">
+                    <div class="mb-3">
+                      <label class="form-label">Nom</label>
+                      <input type="text" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.name" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.name = $event">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Email</label>
+                      <input type="email" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.email" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.email = $event">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Téléphone Principal</label>
+                      <input type="tel" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.phone1" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.phone1 = $event">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Téléphone Secondaire</label>
+                      <input type="tel" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.phone2" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.phone2 = $event">
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Rôle</label>
+                      <input type="text" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.role" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.role = $event">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Files Tab -->
-      <div *ngIf="activeTab === 'files'" class="card">
+      <div *ngIf="activeTab === 'files'" class="card content-card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="mb-0">Documents</h4>
@@ -158,7 +211,7 @@
       </div>
 
       <!-- Contracts Tab -->
-      <div *ngIf="activeTab === 'contracts'" class="card">
+      <div *ngIf="activeTab === 'contracts'" class="card content-card">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="mb-0">Contrats</h4>

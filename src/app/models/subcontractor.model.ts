@@ -14,6 +14,6 @@ export interface Subcontractor {
   skills: string[];
   archived?: boolean;
   profilePicture?: string;
-  responsibleOfSubcontractors?: ResponsibleOfSubcontractor[];
+  responsibleOfSubcontractors: ResponsibleOfSubcontractor;
   regestrationCompleted?: boolean;
 }

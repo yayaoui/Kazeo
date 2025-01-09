@@ -68,7 +68,15 @@ export class SubcontractorProfileComponent implements OnInit {
         status: 'inactive',
         rating: 0,
         skills: [],
-        profilePicture: ''
+        profilePicture: '',
+        responsibleOfSubcontractors: {
+          id: 0,
+          name: '',
+          email: '',
+          phone1: '',
+          phone2: '',
+          role: ''
+        }
       };
     }
     this.isEditing = !this.isEditing;

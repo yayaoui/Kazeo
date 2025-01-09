@@ -46,7 +46,7 @@ export class SubcontractorService {
     return this.http.get<Subcontractor>(`${this.apiUrl}/${id}`);
   }
 
-  createSubcontractor(subcontractor: Omit<Subcontractor, 'id'>): Observable<Subcontractor> {
+  createSubcontractor(subcontractor: Omit<Subcontractor, 'id' | 'responsibleOfSubcontractors'>): Observable<Subcontractor> {
     return this.http.post<Subcontractor>(this.apiUrl, subcontractor);
   }
 

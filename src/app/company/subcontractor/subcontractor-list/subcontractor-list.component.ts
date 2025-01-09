@@ -25,7 +25,7 @@ export class SubcontractorListComponent implements OnInit {
   private archiveModal: any;
   private createSubcontractorModal: any;
   // initialize new subcontractor
-  newSubcontractor: Omit<Subcontractor, 'id'> = {
+  newSubcontractor: Omit<Subcontractor, 'id' | 'responsibleOfSubcontractors'> = {
     company: '',
     workSector: '',
     address: {
@@ -40,7 +40,8 @@ export class SubcontractorListComponent implements OnInit {
     rating: 0,
     skills: [],
     archived: false,
-    profilePicture: ''
+    profilePicture: '',
+    regestrationCompleted: false
   };
 
   selectedFile: File | null = null;
