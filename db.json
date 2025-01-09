@@ -8,14 +8,19 @@
       "phone": "+33 1 23 45 67 89",
       "status": "active",
       "rating": 4.5,
-      "location": "Paris",
+      "address": {
+        "street": "Rue des Artisans",
+        "city": "Paris",
+        "zip": "75000"
+      },
       "Description": "Specialiste en isolation Termique de mur par l'exterieur et par l'interieur et xhngment des cambles",
       "skills": [
         "Isolation thermique",
         "Isolation par l'interieur",
         "Isolation par l'exterieur"
       ],
-      "archived": false
+      "archived": false,
+      "regestrationCompleted": true
     },
     {
       "id": "2",
@@ -25,14 +30,19 @@
       "phone": "+33 6 12 34 56 78",
       "status": "active",
       "rating": 4.8,
-      "location": "Lyon",
+      "address": {
+        "street": "Rue des Artisans",
+        "city": "Lyon",
+        "zip": "69000"
+      },
       "Description": "Specialiste en ventilation et chauffage",
       "skills": [
         "Ventilation",
         "Chauffage",
         "Isolation thermique"
       ],
-      "archived": false
+      "archived": false,
+      "regestrationCompleted": true
     },
     {
       "id": "3",
@@ -42,14 +52,19 @@
       "phone": "+33 6 12 34 56 78",
       "status": "active",
       "rating": 4.8,
-      "location": "Lyon",
+      "address": {
+        "street": "Rue des Artisans",
+        "city": "Lyon",
+        "zip": "69000"
+      },
       "Description": "Specialiste en ventilation et chauffage",
       "skills": [
         "Ventilation",
         "Chauffage",
         "Isolation thermique"
       ],
-      "archived": false
+      "archived": false,
+      "regestrationCompleted": true
     },
     {
       "id": "4",
@@ -59,14 +74,19 @@
       "phone": "+33 6 12 34 56 78",
       "status": "active",
       "rating": 4.8,
-      "location": "Lyon",
+      "address": {
+        "street": "Rue des Artisans",
+        "city": "Lyon",
+        "zip": "69000"
+      },
       "Description": "Specialiste en ventilation et chauffage",
       "skills": [
         "Ventilation",
         "Chauffage",
         "Isolation thermique"
       ],
-      "archived": false
+      "archived": false,
+      "regestrationCompleted": false
     },
     {
       "id": "5",
@@ -76,261 +96,73 @@
       "phone": "+33 6 12 34 56 78",
       "status": "active",
       "rating": 4.8,
-      "location": "Lyon",
+      "address": {
+        "street": "Rue des Artisans",
+        "city": "Lyon",
+        "zip": "69000"
+      },
       "Description": "Specialiste en ventilation et chauffage",
       "skills": [
         "Ventilation",
         "Chauffage",
         "Isolation thermique"
       ],
-      "archived": false
+      "archived": false,
+      "regestrationCompleted": false
     },
     {
-      "id": "6",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "7",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "8",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "9",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "10",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "11",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "12",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "13",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "14",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "15",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "16",
-      "company": "Digital Services Pro",
-      "expertise": "Ventilation",
-      "email": "marie.dubois@digitalservices.fr",
-      "phone": "+33 6 12 34 56 78",
-      "status": "active",
-      "rating": 4.8,
-      "location": "Lyon",
-      "Description": "Specialiste en ventilation et chauffage",
-      "skills": [
-        "Ventilation",
-        "Chauffage",
-        "Isolation thermique"
-      ],
-      "archived": false
-    },
-    {
-      "id": "c6b7",
-      "responsible": "ok",
-      "company": "ok",
-      "expertise": "ok",
-      "location": "ok",
-      "phone": "+3364121454",
-      "email": "ok@gmail.com",
-      "status": "active"
-    },
-    {
-      "id": "9861",
-      "responsible": "respo 3",
-      "company": "hrtyhtyh",
-      "expertise": "htyh",
-      "location": "ythe",
+      "id": "bbc7",
+      "company": "last one",
+      "workSector": "Ventilation",
+      "address": {
+        "street": "35 RUE DES LYS",
+        "city": "BARBATRE",
+        "zip": "85630"
+      },
       "phone": "0603043718",
       "email": "elizayeu@sfr.fr",
-      "status": "active"
+      "description": "ok all is goode ",
+      "status": "active",
+      "rating": 0,
+      "skills": [],
+      "archived": false,
+      "regestrationCompleted": false
     },
     {
-      "id": "0bc6",
-      "responsible": "respo 3",
-      "company": "hrtyhtyh",
-      "expertise": "htyh",
-      "location": "ythe",
+      "id": "9cf3",
+      "company": "fer",
+      "workSector": "re",
+      "address": {
+        "street": "35 RUE DES LYS",
+        "city": "BARBATRE",
+        "zip": "85630"
+      },
       "phone": "0603043718",
       "email": "elizayeu@sfr.fr",
-      "status": "active"
+      "description": "",
+      "status": "active",
+      "rating": 0,
+      "skills": [],
+      "archived": false,
+      "profilePicture": ""
     },
     {
-      "id": "3fb3",
-      "responsible": "respo 3",
-      "company": "hrtyhtyh",
-      "expertise": "htyh",
-      "location": "ythe",
-      "phone": "0603043718",
-      "email": "elizayeu@sfr.fr",
-      "status": "active"
-    },
-    {
-      "id": "d63b",
-      "responsible": "respo 3",
-      "company": "hrtyhtyh",
-      "expertise": "htyh",
-      "location": "ythe",
-      "phone": "0603043718",
-      "email": "elizayeu@sfr.fr",
-      "status": "active"
-    },
-    {
-      "id": "fac1",
-      "responsible": "respo 3",
-      "company": "hrtyhtyh",
-      "expertise": "htyh",
-      "location": "ythe",
-      "phone": "0603043718",
-      "email": "elizayeu@sfr.fr",
-      "status": "active"
+      "id": "ba0c",
+      "company": "re",
+      "workSector": "erg",
+      "address": {
+        "street": "13 ALL DES ALOUETTES",
+        "city": "MAGNANVILLE",
+        "zip": "78200"
+      },
+      "phone": "0762531029",
+      "email": "hanane.arbib@francetravail.fr",
+      "description": "gergerge",
+      "status": "active",
+      "rating": 0,
+      "skills": [],
+      "archived": false,
+      "profilePicture": ""
     }
   ],
   "clients": [

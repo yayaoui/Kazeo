@@ -8,6 +8,7 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class NavbarComponent implements OnInit {
   currentTheme$;
+  isMenuOpen = false;
 
   constructor(private themeService: ThemeService) {
     this.currentTheme$ = this.themeService.theme$;
@@ -31,5 +32,9 @@ export class NavbarComponent implements OnInit {
 
   toggleTheme() {
     this.themeService.toggleTheme();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

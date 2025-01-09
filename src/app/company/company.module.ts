@@ -10,7 +10,7 @@ import { SubcontractorFormComponent } from './subcontractor/subcontractor-form/s
 import { ClientListComponent } from './clients/client-list/client-list.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SubcontractorProfileComponent } from './subcontractor/subcontractor-profile/subcontractor-profile.component';
 
 
@@ -29,7 +29,8 @@ import { SubcontractorProfileComponent } from './subcontractor/subcontractor-pro
   imports: [
     CommonModule,
     CompanyRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class CompanyModule { }

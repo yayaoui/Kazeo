@@ -6,11 +6,11 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h2 class="mb-1">{{subcontractor!.company}}</h2>
-              <p class="text-muted mb-0">{{subcontractor!.expertise}}</p>
+              <h2 class="mb-1">{{subcontractor.company}}</h2>
+              <p class="text-muted mb-0">{{subcontractor.workSector}}</p>
             </div>
-            <span class="badge" [ngClass]="{'bg-success': subcontractor!.status === 'active', 'bg-danger': subcontractor!.status === 'inactive'}">
-              {{subcontractor!.status === 'active' ? 'Actif' : 'Inactif'}}
+            <span class="badge" [ngClass]="{'bg-success': subcontractor.status === 'active', 'bg-danger': subcontractor.status === 'inactive'}">
+              {{subcontractor.status === 'active' ? 'Actif' : 'Inactif'}}
             </span>
           </div>
         </div>
@@ -51,12 +51,12 @@
                 <p class="mb-2">{{subcontractor.company}}</p>
               </div>
               <div class="mb-3">
-                <label class="text-muted">Expertise</label>
-                <p class="mb-2">{{subcontractor.expertise}}</p>
+                <label class="text-muted">Secteur d'activité</label>
+                <p class="mb-2">{{subcontractor.workSector}}</p>
               </div>
               <div class="mb-3">
                 <label class="text-muted">Description</label>
-                <p class="mb-2">{{subcontractor.Description}}</p>
+                <p class="mb-2">{{subcontractor.description}}</p>
               </div>
             </div>
             <div class="col-md-6">
@@ -71,7 +71,9 @@
               </div>
               <div class="mb-3">
                 <label class="text-muted">Localisation</label>
-                <p class="mb-2">{{subcontractor.location}}</p>
+                <div *ngIf="subcontractor">
+                  <p class="mb-2">{{subcontractor.address.city}}</p>
+                </div>
               </div>
             </div>
           </div>

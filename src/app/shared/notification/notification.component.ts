@@ -69,41 +69,33 @@ import { NotificationService } from '../../services/notification.service';
   `]
 })
 export class NotificationComponent implements OnInit, OnDestroy {
-  notification: { message: string; type: string } | null = null;
-  private subscription: Subscription | null = null;
-  private timeout: any;
+  notification: any;
+  private subscription!: Subscription;
 
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit() {
-    this.subscription = this.notificationService.notifications$.subscribe(notification => {
-      this.showNotification(notification);
-    });
+    this.subscription = this.notificationService.notifications$
+      .subscribe(notification => {
+        this.notification = notification;
+        if (notification) {
+          setTimeout(() => {
+            this.notification = null;
+          }, 3000);
+        }
+      });
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-  }
-
-  private showNotification(notification: { message: string; type: string }) {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-    }
-    
-    this.notification = notification;
-    
-    this.timeout = setTimeout(() => {
-      this.notification = null;
-    }, 3000);
   }
 
   getIcon(): string {
-    switch (this.notification?.type) {
+    if (!this.notification) return '';
+    
+    switch (this.notification.type) {
       case 'success':
         return 'fa-check-circle';
       case 'error':

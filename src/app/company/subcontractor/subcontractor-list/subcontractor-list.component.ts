@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SubcontractorService } from '../../../services/subcontractor.service';
 import { Subcontractor } from '../../../models/subcontractor.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 declare var bootstrap: any;
 
 @Component({
@@ -13,29 +14,50 @@ declare var bootstrap: any;
 export class SubcontractorListComponent implements OnInit {
   subcontractors: Subcontractor[] = [];
   selectedContractor: Subcontractor | null = null;
-  private detailsModal: any;
-  private statusChangeModal: any;
-  private archiveModal: any;
-  private createSubcontractorModal: any;
   loading = false;
   error = '';
   page = 0;
   size = 10;
-  pages: any = [];
+  pages: number[] = [];
   totalPages = 0;
+
+  private statusChangeModal: any;
+  private archiveModal: any;
+  private createSubcontractorModal: any;
+  // initialize new subcontractor
+  newSubcontractor: Omit<Subcontractor, 'id'> = {
+    company: '',
+    workSector: '',
+    address: {
+      street: '',
+      city: '',
+      zip: ''
+    },
+    phone: '',
+    email: '',
+    description: '',
+    status: 'active',
+    rating: 0,
+    skills: [],
+    archived: false,
+    profilePicture: ''
+  };
+
+  selectedFile: File | null = null;
 
   constructor(
     private subcontractorService: SubcontractorService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.loadSubcontractors();
-    // Initialize Bootstrap modals
-    const modalElement = document.getElementById('detailsModal');
-    if (modalElement) {
-      this.detailsModal = new bootstrap.Modal(modalElement);
-    }
+    this.initializeModals();
+  }
+
+  // Initialize modals
+  private initializeModals(): void {
     const statusChangeModalElement = document.getElementById('statusChangeModal');
     if (statusChangeModalElement) {
       this.statusChangeModal = new bootstrap.Modal(statusChangeModalElement);
@@ -50,93 +72,52 @@ export class SubcontractorListComponent implements OnInit {
     }
   }
 
-  // Method to load subcontractors
+  // Load subcontractors
   loadSubcontractors(): void {
     this.loading = true;
-    this.subcontractorService.getSubcontractors(this.page, this.size)
-      .subscribe({
-        next: (response) => {
-          this.subcontractors = response.content;
-          this.totalPages = response.totalPages;
-          this.pages = Array(this.totalPages).fill(0).map((x, i) => i);
-          this.loading = false;
-        },
-        error: (error: HttpErrorResponse) => {
-          this.error = 'Une erreur est survenue lors du chargement des sous-traitants.';
-          this.loading = false;
-        }
-      });
+    this.subcontractorService.getSubcontractors(this.page, this.size).subscribe({
+      next: (response) => {
+        this.subcontractors = response.content;
+        this.totalPages = response.totalPages;
+        this.pages = Array(this.totalPages).fill(0).map((_, i) => i);
+        this.loading = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.error = 'Une erreur est survenue lors du chargement des sous-traitants.';
+        this.loading = false;
+        console.error('Error loading subcontractors:', error);
+      }
+    });
   }
 
-  // Method to navigate to a specific page
-  gotToPage(page: number) {
+  // Navigation methods
+  gotToPage(page: number): void {
     this.page = page;
     this.loadSubcontractors();
   }
 
-  // Method to navigate to the first page
-  goToFirstPage() {
-    this.page = 0;
-    this.loadSubcontractors();
+  goToFirstPage(): void {
+    this.gotToPage(0);
   }
 
-  // Method to navigate to the previous page
-  goToPreviousPage() {
-    this.page--;
-    this.loadSubcontractors();
-  }
-
-  // Method to navigate to the next page
-  goToNextPage() {
-    this.page++;
-    this.loadSubcontractors();
-  }
-
-  // Method to navigate to the last page
-  goToLastPage() {
-    this.page = this.totalPages - 1;
-    this.loadSubcontractors();
-  }
-
-  // Check if it's the last page
-  get isLastPage() {
-    return this.page === this.totalPages - 1;
-  }
-
-  // Method open modal of create subcontractor
-  navigateToCreate(): void {
-    this.createSubcontractorModal?.show();
-  }
-   
-
-  deleteSubcontractor(id: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce sous-traitant ?')) {
-      this.subcontractorService.deleteSubcontractor(id)
-        .subscribe({
-          next: () => {
-            this.loadSubcontractors();
-          },
-          error: (error: HttpErrorResponse) => {
-            this.error = 'Une erreur est survenue lors de la suppression du sous-traitant.';
-          }
-        });
+  goToPreviousPage(): void {
+    if (this.page > 0) {
+      this.gotToPage(this.page - 1);
     }
   }
 
-  archiveContractor(id: number): void {
-    this.subcontractorService.archiveSubcontractor(id)
-      .subscribe({
-        next: () => {
-          this.loadSubcontractors();
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error('Error archiving subcontractor:', error);
-        }
-      });
+  goToNextPage(): void {
+    if (!this.isLastPage) {
+      this.gotToPage(this.page + 1);
+    }
   }
 
-  navigateToEdit(id: number): void {
-    this.router.navigate(['/sous-traitant/edit', id]);
+  goToLastPage(): void {
+    this.gotToPage(this.totalPages - 1);
+  }
+
+  get isLastPage(): boolean {
+    return this.page === this.totalPages - 1;
   }
 
   navigateToProfile(id: number): void {
@@ -154,19 +135,19 @@ export class SubcontractorListComponent implements OnInit {
     this.loading = true;
     const newStatus = this.selectedContractor.status === 'active' ? 'inactive' : 'active';
     
-    this.subcontractorService.updateSubcontractor(this.selectedContractor.id, { status: newStatus })
-      .subscribe({
-        next: () => {
-          this.selectedContractor!.status = newStatus;
-          this.loading = false;
-          this.statusChangeModal?.hide();
-        },
-        error: (error: HttpErrorResponse) => {
-          this.error = 'Erreur lors de la modification du statut';
-          this.loading = false;
-          console.error('Error updating status:', error);
-        }
-      });
+    this.subcontractorService.updateSubcontractor(this.selectedContractor.id, { status: newStatus }).subscribe({
+      next: () => {
+        this.selectedContractor!.status = newStatus;
+        this.loading = false;
+        this.statusChangeModal?.hide();
+        this.loadSubcontractors();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.error = 'Erreur lors de la modification du statut';
+        this.loading = false;
+        console.error('Error updating status:', error);
+      }
+    });
   }
 
   confirmArchive(id: number): void {
@@ -181,21 +162,79 @@ export class SubcontractorListComponent implements OnInit {
     if (!this.selectedContractor) return;
 
     this.loading = true;
-    this.subcontractorService.archiveSubcontractor(this.selectedContractor.id)
-      .subscribe({
-        next: () => {
-          // Update both archived and status
-          this.selectedContractor!.archived = true;
-          this.selectedContractor!.status = 'inactive';
-          this.loading = false;
-          this.archiveModal?.hide();
-          this.loadSubcontractors(); // Refresh the list
-        },
-        error: (error: HttpErrorResponse) => {
-          this.error = 'Erreur lors de l\'archivage du sous-traitant';
-          this.loading = false;
-          console.error('Error archiving subcontractor:', error);
-        }
-      });
+    this.subcontractorService.archiveSubcontractor(this.selectedContractor.id).subscribe({
+      next: () => {
+        this.loading = false;
+        this.archiveModal?.hide();
+        this.loadSubcontractors();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.error = 'Erreur lors de l\'archivage du sous-traitant';
+        this.loading = false;
+        console.error('Error archiving subcontractor:', error);
+      }
+    });
+  }
+
+  createSubcontractor(): void {
+    this.newSubcontractor 
+    this.createSubcontractorModal.show();
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      // Convert file to base64
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.newSubcontractor.profilePicture = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  saveSubcontractor(): void {
+    if (this.selectedFile && this.selectedFile.size > 5000000) { // 5MB limit
+      this.toastr.error('La taille du fichier ne doit pas dépasser 5MB', 'Erreur');
+      return;
+    }
+
+    this.loading = true;
+    this.subcontractorService.createSubcontractor(this.newSubcontractor).subscribe({
+      next: (response) => {
+        this.loading = false;
+        this.toastr.success('Sous-traitant créé avec succès', 'Succès');
+        this.loadSubcontractors();
+        this.createSubcontractorModal.hide();
+        this.resetForm();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.loading = false;
+        this.toastr.error('Erreur lors de la création du sous-traitant', 'Erreur');
+        console.error('Error creating subcontractor:', error);
+      }
+    });
+  }
+
+  resetForm(): void {
+    this.newSubcontractor = {
+      company: '',
+      workSector: '',
+      address: {
+        street: '',
+        city: '',
+        zip: ''
+      },
+      phone: '',
+      email: '',
+      description: '',
+      status: 'active',
+      rating: 0,
+      skills: [],
+      archived: false,
+      profilePicture: ''
+    };
+    this.selectedFile = null;
   }
 }

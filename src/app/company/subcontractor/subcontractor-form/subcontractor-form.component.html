@@ -1,120 +1,122 @@
-<form [formGroup]="subcontractorForm" (ngSubmit)="onSubmit()" class="p-3">
-  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
-
-  <div class="row g-3">
-    <div class="col-md-6">
-      <label for="responsible" class="form-label">Responsable*</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="responsible" 
-        formControlName="responsible"
-        [class.is-invalid]="subcontractorForm.get('responsible')?.invalid && subcontractorForm.get('responsible')?.touched">
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('responsible')?.errors?.['required']">
-        Le responsable est requis
-      </div>
+<div class="container py-4">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Nouveau Sous-traitant</h5>
     </div>
+    <div class="card-body">
+      <form [formGroup]="subcontractorForm" (ngSubmit)="onSubmit()">
+        <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
 
-    <div class="col-md-6">
-      <label for="company" class="form-label">Entreprise*</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="company" 
-        formControlName="company"
-        [class.is-invalid]="subcontractorForm.get('company')?.invalid && subcontractorForm.get('company')?.touched">
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('company')?.errors?.['required']">
-        L'entreprise est requise
-      </div>
-    </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="responsible" class="form-label">Responsable*</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="responsible" 
+              formControlName="responsible"
+              [class.is-invalid]="subcontractorForm.get('responsible')?.invalid && subcontractorForm.get('responsible')?.touched">
+            <div class="invalid-feedback">
+              Le responsable est requis
+            </div>
+          </div>
 
-    <div class="col-md-6">
-      <label for="expertise" class="form-label">Expertise*</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="expertise" 
-        formControlName="expertise"
-        [class.is-invalid]="subcontractorForm.get('expertise')?.invalid && subcontractorForm.get('expertise')?.touched">
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('expertise')?.errors?.['required']">
-        L'expertise est requise
-      </div>
-    </div>
+          <div class="col-md-6">
+            <label for="company" class="form-label">Entreprise*</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="company" 
+              formControlName="company"
+              [class.is-invalid]="subcontractorForm.get('company')?.invalid && subcontractorForm.get('company')?.touched">
+            <div class="invalid-feedback">
+              L'entreprise est requise
+            </div>
+          </div>
 
-    <div class="col-md-6">
-      <label for="location" class="form-label">Localisation*</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="location" 
-        formControlName="location"
-        [class.is-invalid]="subcontractorForm.get('location')?.invalid && subcontractorForm.get('location')?.touched">
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('location')?.errors?.['required']">
-        La localisation est requise
-      </div>
-    </div>
+          <div class="col-md-6">
+            <label for="expertise" class="form-label">Expertise*</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="expertise" 
+              formControlName="expertise"
+              [class.is-invalid]="subcontractorForm.get('expertise')?.invalid && subcontractorForm.get('expertise')?.touched">
+            <div class="invalid-feedback">
+              L'expertise est requise
+            </div>
+          </div>
 
-    <div class="col-md-6">
-      <label for="phone" class="form-label">Téléphone*</label>
-      <input 
-        type="tel" 
-        class="form-control" 
-        id="phone" 
-        formControlName="phone"
-        [class.is-invalid]="subcontractorForm.get('phone')?.invalid && subcontractorForm.get('phone')?.touched">
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('phone')?.errors?.['required']">
-        Le téléphone est requis
-      </div>
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('phone')?.errors?.['pattern']">
-        Le format du numéro de téléphone est invalide
-      </div>
-    </div>
+          <div class="col-md-6">
+            <label for="location" class="form-label">Localisation*</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="location" 
+              formControlName="location"
+              [class.is-invalid]="subcontractorForm.get('location')?.invalid && subcontractorForm.get('location')?.touched">
+            <div class="invalid-feedback">
+              La localisation est requise
+            </div>
+          </div>
 
-    <div class="col-md-6">
-      <label for="email" class="form-label">Email*</label>
-      <input 
-        type="email" 
-        class="form-control" 
-        id="email" 
-        formControlName="email"
-        [class.is-invalid]="subcontractorForm.get('email')?.invalid && subcontractorForm.get('email')?.touched">
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('email')?.errors?.['required']">
-        L'email est requis
-      </div>
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('email')?.errors?.['email']">
-        Format d'email invalide
-      </div>
-    </div>
+          <div class="col-md-6">
+            <label for="phone" class="form-label">Téléphone*</label>
+            <input 
+              type="tel" 
+              class="form-control" 
+              id="phone" 
+              formControlName="phone"
+              [class.is-invalid]="subcontractorForm.get('phone')?.invalid && subcontractorForm.get('phone')?.touched">
+            <div class="invalid-feedback" *ngIf="subcontractorForm.get('phone')?.errors?.['required']">
+              Le téléphone est requis
+            </div>
+            <div class="invalid-feedback" *ngIf="subcontractorForm.get('phone')?.errors?.['pattern']">
+              Le format du numéro de téléphone est invalide
+            </div>
+          </div>
 
-    <div class="col-md-6">
-      <label for="status" class="form-label">Statut*</label>
-      <select 
-        class="form-select" 
-        id="status" 
-        formControlName="status"
-        [class.is-invalid]="subcontractorForm.get('status')?.invalid && subcontractorForm.get('status')?.touched">
-        <option value="active">Actif</option>
-        <option value="inactive">Inactif</option>
-      </select>
-      <div class="invalid-feedback" *ngIf="subcontractorForm.get('status')?.errors?.['required']">
-        Le statut est requis
-      </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email*</label>
+            <input 
+              type="email" 
+              class="form-control" 
+              id="email" 
+              formControlName="email"
+              [class.is-invalid]="subcontractorForm.get('email')?.invalid && subcontractorForm.get('email')?.touched">
+            <div class="invalid-feedback" *ngIf="subcontractorForm.get('email')?.errors?.['required']">
+              L'email est requis
+            </div>
+            <div class="invalid-feedback" *ngIf="subcontractorForm.get('email')?.errors?.['email']">
+              Format d'email invalide
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="status" class="form-label">Statut*</label>
+            <select 
+              class="form-select" 
+              id="status" 
+              formControlName="status">
+              <option value="active">Actif</option>
+              <option value="inactive">Inactif</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 justify-content-end mt-4">
+          <button type="button" class="btn btn-secondary" (click)="onClear()">
+            <i class="fas fa-undo me-2"></i>Réinitialiser
+          </button>
+          <button type="button" class="btn btn-outline-danger" (click)="onCancel()">
+            <i class="fas fa-times me-2"></i>Annuler
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
+            <i class="fas fa-save me-2"></i>Créer
+            <span class="spinner-border spinner-border-sm ms-1" *ngIf="isSubmitting"></span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="d-flex justify-content-end gap-2 mt-4">
-    <!-- Clear Button -->
-     <button 
-      type="button" 
-      class="btn btn-secondary" 
-      (click)="onClear()"
-      [disabled]="isSubmitting">
-      <i class="fas fa-eraser"></i>
-    </button>
-    <button 
-      type="submit" 
-      class="btn btn-primary" 
-      [disabled]="subcontractorForm.invalid || isSubmitting">
-      {{ isSubmitting ? 'Enregistrement...' : (subcontractor ? 'Mettre à jour' : 'Créer') }}
-    </button>
-  </div>
-</form>
+</div>
