@@ -4,14 +4,43 @@
     <div class="col-12 mb-4">
       <div class="card">
         <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h2 class="mb-1">{{subcontractor.company}}</h2>
-              <p class="text-muted mb-0">{{subcontractor.workSector}}</p>
+          <div class="d-flex justify-content-between">
+            <div class="d-flex gap-4">
+              <!-- Profile Picture Section -->
+              <div class="position-relative">
+                <img [src]="subcontractor.profilePicture || 'assets/images/default-company.png'"
+                     class="rounded-circle"
+                     style="width: 100px; height: 100px; object-fit: cover;"
+                     alt="Profile picture">
+                <button *ngIf="isEditing" class="btn btn-sm btn-primary position-absolute bottom-0 end-0"
+                        (click)="fileInput.click()">
+                  <i class="fas fa-camera"></i>
+                </button>
+                <input #fileInput type="file" class="d-none" accept="image/*" (change)="onFileSelected($event)">
+              </div>
+              <!-- Company Info -->
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <h2 class="mb-1" *ngIf="!isEditing">{{subcontractor.company}}</h2>
+                  <span class="badge" [ngClass]="{'bg-success': subcontractor.status === 'active', 'bg-danger': subcontractor.status === 'inactive'}">
+                    {{subcontractor.status === 'active' ? 'Actif' : 'Inactif'}}
+                  </span>
+                  <input *ngIf="isEditing && editedSubcontractor" type="text" class="form-control" [(ngModel)]="editedSubcontractor.company">
+                  <button class="btn btn-primary ms-2" (click)="toggleEdit()">
+                    <i class="fas" [ngClass]="isEditing ? 'fa-save' : 'fa-edit'"></i>
+                    {{isEditing ? 'Enregistrer' : 'Modifier'}}
+                  </button>
+                </div>
+                <p class="text-muted mb-0" *ngIf="!isEditing">{{subcontractor.workSector}}</p>
+                <input *ngIf="isEditing && editedSubcontractor" type="text" class="form-control mt-2" [(ngModel)]="editedSubcontractor.workSector">
+              </div>
             </div>
-            <span class="badge" [ngClass]="{'bg-success': subcontractor.status === 'active', 'bg-danger': subcontractor.status === 'inactive'}">
-              {{subcontractor.status === 'active' ? 'Actif' : 'Inactif'}}
-            </span>
+            <div class="d-flex align-items-center">
+              <!-- Archive Button -->
+              <button class="btn btn-danger ms-2"  title="Archiver">
+                <i class="fas fa-archive me-2"></i>Archiver
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -47,41 +76,50 @@
             <div class="col-md-6">
               <h4 class="mb-4">Informations Générales</h4>
               <div class="mb-3">
-                <label class="text-muted">Entreprise</label>
-                <p class="mb-2">{{subcontractor.company}}</p>
-              </div>
-              <div class="mb-3">
-                <label class="text-muted">Secteur d'activité</label>
-                <p class="mb-2">{{subcontractor.workSector}}</p>
-              </div>
-              <div class="mb-3">
                 <label class="text-muted">Description</label>
-                <p class="mb-2">{{subcontractor.description}}</p>
+                <p class="mb-2" *ngIf="!isEditing">{{subcontractor.description}}</p>
+                <textarea *ngIf="isEditing && editedSubcontractor" class="form-control" rows="3" [(ngModel)]="editedSubcontractor.description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="text-muted">Compétences</label>
+                <div *ngIf="!isEditing">
+                  <span *ngFor="let skill of subcontractor.skills" class="badge bg-secondary me-2 mb-2">{{skill}}</span>
+                </div>
+                <div *ngIf="isEditing && editedSubcontractor">
+                  <input type="text" class="form-control mb-2" [(ngModel)]="newSkill" 
+                         placeholder="Ajouter une compétence" (keyup.enter)="addSkill()">
+                  <div>
+                    <span *ngFor="let skill of editedSubcontractor.skills" class="badge bg-secondary me-2 mb-2">
+                      {{skill}}
+                      <i class="fas fa-times ms-1 cursor-pointer" (click)="removeSkill(skill)"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-6">
               <h4 class="mb-4">Contact</h4>
               <div class="mb-3">
                 <label class="text-muted">Email</label>
-                <p class="mb-2">{{subcontractor.email}}</p>
+                <p class="mb-2" *ngIf="!isEditing">{{subcontractor.email}}</p>
+                <input *ngIf="isEditing && editedSubcontractor" type="email" class="form-control" [(ngModel)]="editedSubcontractor.email">
               </div>
               <div class="mb-3">
                 <label class="text-muted">Téléphone</label>
-                <p class="mb-2">{{subcontractor.phone}}</p>
+                <p class="mb-2" *ngIf="!isEditing">{{subcontractor.phone}}</p>
+                <input *ngIf="isEditing && editedSubcontractor" type="tel" class="form-control" [(ngModel)]="editedSubcontractor.phone">
               </div>
               <div class="mb-3">
-                <label class="text-muted">Localisation</label>
-                <div *ngIf="subcontractor">
-                  <p class="mb-2">{{subcontractor.address.city}}</p>
+                <label class="text-muted">Adresse</label>
+                <div *ngIf="!isEditing">
+                  <p class="mb-2">{{subcontractor.address.street}}</p>
+                  <p class="mb-2">{{subcontractor.address.city}}, {{subcontractor.address.zip}}</p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-4">
-            <div class="col-12">
-              <h4 class="mb-3">Compétences</h4>
-              <div class="d-flex flex-wrap gap-2">
-                <span class="badge bg-primary" *ngFor="let skill of subcontractor.skills">{{skill}}</span>
+                <div *ngIf="isEditing && editedSubcontractor">
+                  <input type="text" class="form-control mb-2" placeholder="Rue" [(ngModel)]="editedSubcontractor.address.street">
+                  <input type="text" class="form-control mb-2" placeholder="Ville" [(ngModel)]="editedSubcontractor.address.city">
+                  <input type="text" class="form-control" placeholder="Code postal" [(ngModel)]="editedSubcontractor.address.zip">
+                </div>
               </div>
             </div>
           </div>
