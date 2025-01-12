@@ -335,50 +335,64 @@
   ],
   "clients": [
     {
-      "id": "1",
-      "name": "Entreprise ABC",
-      "industry": "Finance",
-      "contact": "Sophie Bernard",
-      "email": "contact@entrepriseabc.fr",
-      "phone": "+33 1 98 76 54 32",
-      "address": "45 Avenue des Champs-Élysées, Paris",
-      "activeProjects": 2
+      "id": 1,
+      "name": "Jean Dupont",
+      "company": "Eco Habitat",
+      "email": "jean.dupont@ecohabitat.fr",
+      "phone": "+33 1 23 45 67 89",
+      "address": "15 Rue de la Paix, 75001 Paris",
+      "status": "active",
+      "notes": "Client intéressé par la rénovation énergétique complète",
+      "createdAt": "2024-01-01T10:00:00.000Z",
+      "updatedAt": "2024-01-12T08:30:00.000Z"
     },
     {
-      "id": "2",
-      "name": "Tech Innovate",
-      "industry": "Technology",
-      "contact": "Pierre Durand",
-      "email": "contact@techinnovate.fr",
-      "phone": "+33 4 56 78 90 12",
-      "address": "15 Rue de la République, Lyon",
-      "activeProjects": 1
-    }
-  ],
-  "projects": [
-    {
-      "id": "1",
-      "title": "Refonte Site E-commerce",
-      "clientId": 1,
-      "subcontractorId": 1,
-      "startDate": "2024-01-15",
-      "endDate": "2024-04-15",
-      "status": "En cours",
-      "description": "Modernisation complète du site e-commerce avec nouvelle interface utilisateur",
-      "budget": 25000,
-      "priority": "Haute"
+      "id": 2,
+      "name": "Marie Laurent",
+      "company": "Green Solutions",
+      "email": "m.laurent@greensolutions.fr",
+      "phone": "+33 6 12 34 56 78",
+      "address": "25 Avenue des Champs-Élysées, 75008 Paris",
+      "status": "active",
+      "notes": "Projet de rénovation pour plusieurs bâtiments",
+      "createdAt": "2024-01-02T14:30:00.000Z",
+      "updatedAt": "2024-01-12T09:15:00.000Z"
     },
     {
-      "id": "2",
-      "title": "Application Mobile",
-      "clientId": 2,
-      "subcontractorId": 2,
-      "startDate": "2024-02-01",
-      "endDate": "2024-05-30",
-      "status": "Planifié",
-      "description": "Développement d'une application mobile pour la gestion des stocks",
-      "budget": 35000,
-      "priority": "Moyenne"
+      "id": 3,
+      "name": "Pierre Martin",
+      "company": "Bâtiments Durables",
+      "email": "p.martin@batiments-durables.fr",
+      "phone": "+33 7 89 01 23 45",
+      "address": "8 Rue de Rivoli, 75004 Paris",
+      "status": "inactive",
+      "notes": "Ancien client, à recontacter pour nouveaux projets",
+      "createdAt": "2024-01-03T09:00:00.000Z",
+      "updatedAt": "2024-01-10T16:45:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "Sophie Bernard",
+      "company": "Immobilier Vert",
+      "email": "s.bernard@immobiliervert.fr",
+      "phone": "+33 6 98 76 54 32",
+      "address": "42 Boulevard Haussmann, 75009 Paris",
+      "status": "active",
+      "notes": "Spécialisée dans les projets d'isolation thermique",
+      "createdAt": "2024-01-05T11:20:00.000Z",
+      "updatedAt": "2024-01-11T14:30:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "Lucas Dubois",
+      "company": "Rénovation Plus",
+      "email": "l.dubois@renovationplus.fr",
+      "phone": "+33 1 45 67 89 01",
+      "address": "30 Rue du Commerce, 75015 Paris",
+      "status": "active",
+      "notes": "Nouveau client avec plusieurs projets en cours",
+      "createdAt": "2024-01-08T15:45:00.000Z",
+      "updatedAt": "2024-01-12T10:20:00.000Z"
     }
   ]
 }
