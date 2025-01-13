@@ -1,0 +1,107 @@
+// Custom variables
+$transition-duration: 0.3s;
+$hover-bg: rgba(0, 0, 0, 0.02);
+$border-radius: 0.5rem;
+
+// Card styling
+.card {
+  border: none;
+  transition: box-shadow $transition-duration ease;
+  border-radius: $border-radius;
+  
+  &:hover {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+}
+
+// Table styling
+.table {
+  margin-bottom: 0;
+  
+  th {
+    font-weight: 600;
+    border-top: none;
+    padding: 1rem;
+  }
+  
+  td {
+    padding: 1rem;
+    vertical-align: middle;
+  }
+}
+
+// Avatar styling
+.avatar-initial {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+// Status badge styling
+.badge {
+  padding: 0.5em 0.75em;
+  font-weight: 500;
+  
+  &.bg-success {
+    background-color: #28a745 !important;
+  }
+  
+  &.bg-danger {
+    background-color: #dc3545 !important;
+  }
+}
+
+// Button styling
+.btn {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  
+  &.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    
+    &:hover {
+      background-color: #0b5ed7;
+      border-color: #0a58ca;
+    }
+  }
+  
+  &.btn-outline-primary {
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .table-responsive {
+    margin: 0 -1rem;
+    
+    .table {
+      th, td {
+        min-width: 120px;
+        &:last-child {
+          position: sticky;
+          right: 0;
+          background: #fff;
+          box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+        }
+      }
+    }
+  }
+  
+  .card-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch !important;
+    
+    .btn {
+      width: 100%;
+    }
+  }
+}

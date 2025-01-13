@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SubcontractorListComponent } from './subcontractor/subcontractor-list/subcontractor-list.component';
 import { SubcontractorFormComponent } from './subcontractor/subcontractor-form/subcontractor-form.component';
 import { ClientListComponent } from './clients/client-list/client-list.component';
+import { ClientProfileComponent } from './clients/client-profile/client-profile.component';
 import { ProjectListComponent } from './projects/project-list/project-list.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { SubcontractorProfileComponent } from './subcontractor/subcontractor-pro
     SubcontractorFormComponent,
     SubcontractorProfileComponent,
     ClientListComponent,
+    ClientProfileComponent,
     ProjectListComponent,
     ScheduleComponent
   ],

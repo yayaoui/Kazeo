@@ -1,3 +1,8 @@
+$transition-duration: 0.3s;
+$hover-bg: rgba(0, 0, 0, 0.02);
+$border-radius: 0.5rem;
+
+
 // Modal styles
 .modal-header {
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
@@ -9,22 +14,18 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
+// Card styling
 .card {
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.5rem;
-  transition: transform 0.2s;
-
+  border: none;
+  transition: box-shadow $transition-duration ease;
+  border-radius: $border-radius;
+  
   &:hover {
-    transform: translateY(-2px);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   }
 }
 
-.card-subtitle {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  letter-spacing: 0.5px;
-}
+
 
 // Style for the status badge
 .badge {
