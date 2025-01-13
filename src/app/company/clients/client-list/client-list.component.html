@@ -1,0 +1,170 @@
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-header d-flex justify-content-between align-items-center py-3">
+            <h5 class="mb-0 text-primary">Gestion des Clients</h5>
+            <button (click)="createClient()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
+              <i class="fas fa-plus me-2"></i>Ajouter un Client
+            </button>
+          </div>
+  
+          <div class="card-body">
+            <div *ngIf="loading" class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+              </div>
+            </div>
+  
+            <div *ngIf="error" class="alert alert-danger" role="alert">
+              {{ error }}
+            </div>
+  
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead class="bg-light">
+                  <tr>
+                    <th scope="col" class="text-uppercase text-muted fs-7">Nom</th>
+                    <th scope="col" class="text-uppercase text-muted fs-7">Adresse</th>
+                    <th scope="col" class="text-uppercase text-muted fs-7">Email</th>
+                    <th scope="col" class="text-uppercase text-muted fs-7">Téléphone</th>
+                    <th scope="col" class="text-uppercase text-muted fs-7">Statut</th>
+                    <th scope="col" class="text-uppercase text-muted fs-7">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let client of clients">
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="avatar-initial rounded-circle bg-light text-primary me-3">
+                          {{client.name.charAt(0)}}
+                        </div>
+                        <div>{{client.name}}</div>
+                      </div>
+                    </td>
+                    <td>{{client.address}}</td>
+                    <td>{{client.email}}</td>
+                    <td>{{client.phone}}</td>
+                    <td>
+                      <span class="badge" [ngClass]="client.status === 'active' ? 'bg-success' : 'bg-danger'">
+                        {{client.status}}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button (click)="viewClient(client.id!)" class="btn btn-sm btn-outline-primary">
+                          <i class="fas fa-eye me-1"></i>Voir
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="clients.length === 0 && !loading">
+                    <td colspan="6" class="text-center text-muted py-4">
+                      <i class="fas fa-inbox fa-2x mb-3"></i>
+                      <p class="mb-0">Aucun client trouvé</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Client Modal -->
+  <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="addClientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-primary" id="addClientModalLabel">Ajouter un Nouveau Client</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Nom</label>
+                  <input type="text" class="form-control" formControlName="name" 
+                         [ngClass]="{'is-invalid': clientForm.get('name')?.invalid && clientForm.get('name')?.touched}">
+                  <div class="invalid-feedback" *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched">
+                    Nom requis
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Société</label>
+                  <input type="text" class="form-control" formControlName="company"
+                         [ngClass]="{'is-invalid': clientForm.get('company')?.invalid && clientForm.get('company')?.touched}">
+                  <div class="invalid-feedback" *ngIf="clientForm.get('company')?.invalid && clientForm.get('company')?.touched">
+                    Société requise
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" formControlName="email"
+                         [ngClass]="{'is-invalid': clientForm.get('email')?.invalid && clientForm.get('email')?.touched}">
+                  <div class="invalid-feedback" *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched">
+                    Email valide requis
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Téléphone</label>
+                  <input type="tel" class="form-control" formControlName="phone"
+                         [ngClass]="{'is-invalid': clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched}">
+                  <div class="invalid-feedback" *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched">
+                    Numéro de téléphone valide requis
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label">Adresse</label>
+                  <input type="text" class="form-control" formControlName="address"
+                         [ngClass]="{'is-invalid': clientForm.get('address')?.invalid && clientForm.get('address')?.touched}">
+                  <div class="invalid-feedback" *ngIf="clientForm.get('address')?.invalid && clientForm.get('address')?.touched">
+                    Adresse requise
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label">Statut</label>
+                  <select class="form-select" formControlName="status">
+                    <option value="active">Actif</option>
+                    <option value="inactive">Inactif</option>
+                  </select>
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <div class="form-group">
+                  <label class="form-label">Notes</label>
+                  <textarea class="form-control" formControlName="notes" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!clientForm.valid">
+            Ajouter le Client
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
