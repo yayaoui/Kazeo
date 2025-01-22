@@ -27,7 +27,6 @@
             <table class="table table-hover align-middle">
               <thead class="bg-light">
                 <tr>
-                  <th scope="col" class="text-uppercase text-muted fs-7">ID</th>
                   <th scope="col" class="text-uppercase text-muted fs-7">Entreprise</th>
                   <th scope="col" class="text-uppercase text-muted fs-7 d-none d-md-table-cell">Expertise</th>
                   <th scope="col" class="text-uppercase text-muted fs-7 d-none d-lg-table-cell">Location</th>
@@ -38,8 +37,14 @@
               </thead>
               <tbody>
                 <tr *ngFor="let contractor of subcontractors">
-                  <td class="align-middle d-none d-md-table-cell">{{contractor.id}}</td>
-                  <td class="align-middle">{{contractor.company}}</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="avatar-initial rounded-circle bg-light text-primary me-3">
+                        {{contractor.company.charAt(0)}}
+                      </div>
+                      <div>{{contractor.company}}</div>
+                    </div>
+                  </td>
                   <td class="align-middle d-none d-md-table-cell">{{contractor.workSector}}</td>
                   <td class="align-middle d-none d-lg-table-cell">{{contractor.address}}</td>
                   <td class="align-middle d-none d-lg-table-cell">{{contractor.phone}}</td>

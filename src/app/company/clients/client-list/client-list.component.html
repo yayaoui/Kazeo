@@ -5,7 +5,7 @@
           <div class="card-header d-flex justify-content-between align-items-center py-3">
             <h5 class="mb-0 text-primary">Gestion des Clients</h5>
             <button (click)="createClient()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">
-              <i class="fas fa-plus me-2"></i>Ajouter un Client
+              <i class="fas fa-plus"></i>
             </button>
           </div>
   
@@ -94,14 +94,14 @@
                   </div>
                 </div>
               </div>
-  
+              
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="form-label">Société</label>
+                  <label class="form-label">Comercial</label>
                   <input type="text" class="form-control" formControlName="company"
                          [ngClass]="{'is-invalid': clientForm.get('company')?.invalid && clientForm.get('company')?.touched}">
                   <div class="invalid-feedback" *ngIf="clientForm.get('company')?.invalid && clientForm.get('company')?.touched">
-                    Société requise
+                    Comercial requise
                   </div>
                 </div>
               </div>
