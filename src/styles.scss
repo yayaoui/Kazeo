@@ -9,3 +9,32 @@
     padding: 15px 25px;
   }
 }
+
+// Avatar styling
+.avatar-initial {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+// Global table styling for desktop
+@media screen and (min-width: 768px) {
+  .table {
+    margin-bottom: 0;
+    
+    th {
+      font-weight: 600;
+      border-top: none;
+      padding: 1rem;
+    }
+    
+    td {
+      padding: 1rem;
+      vertical-align: middle;
+    }
+  }
+}
