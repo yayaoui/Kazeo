@@ -1,6 +1,7 @@
-export interface ResponsibleOfSubcontractor {
+export interface Manager {
     id: number;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone1: string;
     phone2: string;

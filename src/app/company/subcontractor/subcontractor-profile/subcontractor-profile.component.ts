@@ -69,9 +69,10 @@ export class SubcontractorProfileComponent implements OnInit {
         rating: 0,
         skills: [],
         profilePicture: '',
-        responsibleOfSubcontractors: {
+        manager: {
           id: 0,
-          name: '',
+          firstName: '',
+          lastName: '',
           email: '',
           phone1: '',
           phone2: '',

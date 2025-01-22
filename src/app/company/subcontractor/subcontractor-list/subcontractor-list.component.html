@@ -2,11 +2,30 @@
   <div class="row mb-4">
     <div class="col-12">
       <div class="card shadow-sm">
-        <div class="card-header d-flex justify-content-between align-items-center py-3">          
-          <h5 class="mb-0 text-primary">Gestion des Sous-traitants</h5>
-          <button class="btn btn-primary"  title="Ajouter un Sous-traitant">
-            <i class="fas fa-plus"></i>
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createSubcontractorModal">
+            <i class="fas fa-plus me-2"></i> Add Subcontractor
           </button>
+          <div class="d-flex justify-content-end align-items-center">
+            <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCustomers()" class="search-form">
+              <div class="search-input-group">
+                <div class="search-icon">
+                  <i class="fa fa-search"></i>
+                </div>
+                <input 
+                  type="text" 
+                  formControlName="keyword" 
+                  class="form-control search-control" 
+                  placeholder="Search subcontractors..."
+                  (input)="onSearch()"
+                >
+                <button type="submit" class="btn btn-primary search-button" [disabled]="loading">
+                  <i class="fa fa-search" *ngIf="!loading"></i>
+                  <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
         <!-- Table -->
         <div class="card-body">
@@ -29,7 +48,8 @@
                 <tr>
                   <th scope="col" class="text-uppercase text-muted fs-7">Entreprise</th>
                   <th scope="col" class="text-uppercase text-muted fs-7 d-none d-md-table-cell">Expertise</th>
-                  <th scope="col" class="text-uppercase text-muted fs-7 d-none d-lg-table-cell">Location</th>
+                  <th scope="col" class="text-uppercase text-muted fs-7 d-none d-lg-table-cell">Responsable</th>
+                  <th scope="col" class="text-uppercase text-muted fs-7 d-none d-lg-table-cell">Adresse</th>
                   <th scope="col" class="text-uppercase text-muted fs-7 d-none d-lg-table-cell">Phone</th>
                   <th scope="col" class="text-uppercase text-muted fs-7">Statut</th>
                   <th scope="col" class="text-uppercase text-muted fs-7 text-end">Actions</th>
@@ -46,6 +66,9 @@
                     </div>
                   </td>
                   <td class="align-middle d-none d-md-table-cell">{{contractor.workSector}}</td>
+                  <td class="align-middle d-none d-lg-table-cell" *ngIf="contractor.manager">
+                    {{contractor.manager.firstName}} {{contractor.manager.lastName}}
+                  </td>
                   <td class="align-middle d-none d-lg-table-cell">{{contractor.address}}</td>
                   <td class="align-middle d-none d-lg-table-cell">{{contractor.phone}}</td>
                   <td class="align-middle">
@@ -65,7 +88,7 @@
                         <i class="fas fa-user"></i>
                       </button>
                       <!-- Edit Button -->
-                      
+
                       <!-- Archive Button -->
                       <button class="btn btn-sm btn-danger" (click)="confirmArchive(contractor.id)" title="Archiver">
                         <i class="fas fa-archive"></i>
@@ -124,7 +147,7 @@
   aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-primary">
         <h5 class="modal-title" id="createSubcontractorModalLabel">Ajouter un Sous-traitant</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

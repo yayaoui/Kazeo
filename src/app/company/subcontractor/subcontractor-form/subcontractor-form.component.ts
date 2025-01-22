@@ -21,13 +21,16 @@ export class SubcontractorFormComponent {
     private notificationService: NotificationService
   ) {
     this.subcontractorForm = this.fb.group({
-      responsible: ['', Validators.required],
-      company: ['', Validators.required],
-      expertise: ['', Validators.required],
-      location: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern(/^\+?[\d\s-]+$/)]],
-      email: ['', [Validators.required, Validators.email]],
-      status: ['active']
+      companyName: this.fb.control('', Validators.required),
+      phone: this.fb.control('', [Validators.required, Validators.pattern(/^\+?[\d\s-]+$/)]),
+      email: this.fb.control('', [Validators.required, Validators.email]),
+      expertise: this.fb.control('', Validators.required),
+      city: this.fb.control('', Validators.required),
+      street: this.fb.control('', Validators.required),
+      postalCode: this.fb.control('', Validators.required),
+      description: this.fb.control('', Validators.required),
+      profilePicture: this.fb.control(''),
+      status: this.fb.control('active')
     });
   }
 
@@ -58,10 +61,6 @@ export class SubcontractorFormComponent {
         console.error('Error:', error);
       }
     });
-  }
-
-  onCancel(): void {
-    this.router.navigate(['/sous-traitant']);
   }
 
   onClear(): void {

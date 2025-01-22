@@ -1,5 +1,5 @@
 import { Address } from "./address";
-import { ResponsibleOfSubcontractor } from "./responsible-of-subcontractor";
+import { Manager} from "./responsible-of-subcontractor";
 
 export interface Subcontractor {
   id: number;
@@ -14,6 +14,6 @@ export interface Subcontractor {
   skills: string[];
   archived?: boolean;
   profilePicture?: string;
-  responsibleOfSubcontractors: ResponsibleOfSubcontractor;
+  manager?: Manager;
   regestrationCompleted?: boolean;
 }

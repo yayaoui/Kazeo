@@ -14,6 +14,24 @@ $border-radius: 0.5rem;
   }
 }
 
+// Table styling
+.table {
+  margin-bottom: 0;
+  
+  th {
+    font-weight: 600;
+    border-top: none;
+    padding: 1rem;
+  }
+  
+  td {
+    padding: 1rem;
+    vertical-align: middle;
+  }
+}
+
+
+
 // Status badge styling
 .badge {
   padding: 0.5em 0.75em;
@@ -28,14 +46,53 @@ $border-radius: 0.5rem;
   }
 }
 
-// Action buttons
-.btn-action {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  border-radius: 0.25rem;
+// Button styling
+.btn {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
   
-  &:hover {
-    background-color: $hover-bg;
+  &.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    
+    &:hover {
+      background-color: #0b5ed7;
+      border-color: #0a58ca;
+    }
+  }
+  
+  &.btn-outline-primary {
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// Responsive styles
+@media (max-width: 768px) {
+  .table-responsive {
+    margin: 0 -1rem;
+    
+    .table {
+      th, td {
+        min-width: 120px;
+        &:last-child {
+          position: sticky;
+          right: 0;
+          background: #fff;
+          box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+        }
+      }
+    }
+  }
+  
+  .card-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch !important;
+    
+    .btn {
+      width: 100%;
+    }
   }
 }

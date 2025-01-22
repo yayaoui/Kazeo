@@ -61,4 +61,32 @@ export class SubcontractorService {
   archiveSubcontractor(id: number): Observable<Subcontractor> {
     return this.http.patch<Subcontractor>(`${this.apiUrl}/${id}`, { archived: true });
   }
+
+  searchSubcontractors(keyword: string, page: number, size: number): Observable<PageResponse> {
+    const start = page * size;
+    const end = start + size;
+    
+    return this.http.get<Subcontractor[]>(this.apiUrl).pipe(
+      map(subcontractors => {
+        const filteredSubcontractors = subcontractors
+          .filter(s => !s.archived && 
+            (s.company.toLowerCase().includes(keyword.toLowerCase()) ||
+             s.workSector.toLowerCase().includes(keyword.toLowerCase()) ||
+             s.description?.toLowerCase().includes(keyword.toLowerCase()))
+          );
+        
+        const totalElements = filteredSubcontractors.length;
+        const totalPages = Math.ceil(totalElements / size);
+        const content = filteredSubcontractors.slice(start, end);
+        
+        return {
+          content,
+          totalPages,
+          totalElements,
+          size,
+          number: page
+        };
+      })
+    );
+  }
 }

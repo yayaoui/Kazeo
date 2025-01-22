@@ -129,47 +129,47 @@
                   <div *ngIf="!isEditing">
                     <div class="mb-3">
                       <label class="text-muted">Nom</label>
-                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.name}}</p>
+                      <p class="mb-2">{{subcontractor.manager?.firstName}} {{subcontractor.manager?.lastName}}</p>
                     </div>
                     <div class="mb-3">
                       <label class="text-muted">Email</label>
-                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.email}}</p>
+                      <p class="mb-2">{{subcontractor.manager?.email}}</p>
                     </div>
                     <div class="mb-3">
                       <label class="text-muted">Téléphone Principal</label>
-                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.phone1}}</p>
+                      <p class="mb-2">{{subcontractor.manager?.phone1}}</p>
                     </div>
                     <div class="mb-3">
                       <label class="text-muted">Téléphone Secondaire</label>
-                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.phone2}}</p>
+                      <p class="mb-2">{{subcontractor.manager?.phone2}}</p>
                     </div>
                     <div class="mb-3">
                       <label class="text-muted">Rôle</label>
-                      <p class="mb-2">{{subcontractor.responsibleOfSubcontractors.role}}</p>
+                      <p class="mb-2">{{subcontractor.manager?.role}}</p>
                     </div>
                   </div>
 
                   <!-- Edit Mode -->
-                  <div *ngIf="isEditing && editedSubcontractor?.responsibleOfSubcontractors">
+                  <div *ngIf="isEditing && editedSubcontractor?.manager">
                     <div class="mb-3">
                       <label class="form-label">Nom</label>
-                      <input type="text" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.name" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.name = $event">
+                      <input type="text" class="form-control" [ngModel]="editedSubcontractor?.manager?.firstName" (ngModelChange)="editedSubcontractor!.manager!.firstName = $event">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Email</label>
-                      <input type="email" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.email" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.email = $event">
+                      <input type="email" class="form-control" [ngModel]="editedSubcontractor?.manager?.email" (ngModelChange)="editedSubcontractor!.manager!.email = $event">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Téléphone Principal</label>
-                      <input type="tel" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.phone1" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.phone1 = $event">
+                      <input type="tel" class="form-control" [ngModel]="editedSubcontractor?.manager?.phone1" (ngModelChange)="editedSubcontractor!.manager!.phone1 = $event">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Téléphone Secondaire</label>
-                      <input type="tel" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.phone2" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.phone2 = $event">
+                      <input type="tel" class="form-control" [ngModel]="editedSubcontractor?.manager?.phone2" (ngModelChange)="editedSubcontractor!.manager!.phone2 = $event">
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Rôle</label>
-                      <input type="text" class="form-control" [ngModel]="editedSubcontractor?.responsibleOfSubcontractors?.role" (ngModelChange)="editedSubcontractor!.responsibleOfSubcontractors!.role = $event">
+                      <input type="text" class="form-control" [ngModel]="editedSubcontractor?.manager?.role" (ngModelChange)="editedSubcontractor!.manager!.role = $event">
                     </div>
                   </div>
                 </div>

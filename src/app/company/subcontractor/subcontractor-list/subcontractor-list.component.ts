@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SubcontractorService } from '../../../services/subcontractor.service';
 import { Subcontractor } from '../../../models/subcontractor.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable, Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 declare var bootstrap: any;
 
 @Component({
@@ -11,7 +13,7 @@ declare var bootstrap: any;
   templateUrl: './subcontractor-list.component.html',
   styleUrls: ['./subcontractor-list.component.scss']
 })
-export class SubcontractorListComponent implements OnInit {
+export class SubcontractorListComponent implements OnInit, OnDestroy {
   subcontractors: Subcontractor[] = [];
   selectedContractor: Subcontractor | null = null;
   loading = false;
@@ -20,6 +22,7 @@ export class SubcontractorListComponent implements OnInit {
   size = 10;
   pages: number[] = [];
   totalPages = 0;
+  searchFormGroup!: FormGroup;
 
   private statusChangeModal: any;
   private archiveModal: any;
@@ -46,15 +49,37 @@ export class SubcontractorListComponent implements OnInit {
 
   selectedFile: File | null = null;
 
+  private destroy$ = new Subject<void>();
+  private searchSubject = new Subject<string>();
+
   constructor(
     private subcontractorService: SubcontractorService,
     private router: Router,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private fb: FormBuilder
+  ) {
+    this.searchFormGroup = this.fb.group({
+      keyword: ['']
+    });
+
+    // Setup search with debounce
+    this.searchSubject.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$)
+    ).subscribe(keyword => {
+      this.handleSearch(keyword);
+    });
+  }
 
   ngOnInit(): void {
     this.loadSubcontractors();
     this.initializeModals();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   // Initialize modals
@@ -89,6 +114,35 @@ export class SubcontractorListComponent implements OnInit {
         console.error('Error loading subcontractors:', error);
       }
     });
+  }
+
+  onSearch(): void {
+    const keyword = this.searchFormGroup.get('keyword')?.value;
+    this.searchSubject.next(keyword);
+  }
+
+  handleSearch(keyword: string): void {
+    this.loading = true;
+    this.subcontractorService.searchSubcontractors(keyword, this.page, this.size)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (data) => {
+          this.subcontractors = data.content;
+          this.totalPages = data.totalPages;
+          this.pages = new Array(this.totalPages).fill(0).map((_, index) => index);
+          this.loading = false;
+        },
+        error: (err: HttpErrorResponse) => {
+          this.error = err.message;
+          this.loading = false;
+          this.toastr.error('Une erreur est survenue lors de la recherche');
+        }
+      });
+  }
+
+  handleSearchCustomers(): void {
+    const keyword = this.searchFormGroup.get('keyword')?.value;
+    this.handleSearch(keyword);
   }
 
   // Navigation methods
